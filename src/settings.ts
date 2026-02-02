@@ -1,36 +1,93 @@
-import {App, PluginSettingTab, Setting} from "obsidian";
-import MyPlugin from "./main";
+import { App, PluginSettingTab, SettingGroup } from "obsidian";
+import SearchAndReplaceRegex from "./main";
+import { DEFAULT_SEARCH_OPTIONS, SearchOptions } from "./state";
 
-export interface MyPluginSettings {
-	mySetting: string;
+export interface SearchHistoryEntry {
+  query: string;
+  replace: string;
+  options: SearchOptions;
+  timestamp: number;
 }
 
-export const DEFAULT_SETTINGS: MyPluginSettings = {
-	mySetting: 'default'
+export interface SearchAndReplaceRegexSettings {
+  defaultSearchOptions: SearchOptions;
+  searchHistory: SearchHistoryEntry[];
+  maxHistoryItems: number;
 }
 
-export class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+export const DEFAULT_SETTINGS: SearchAndReplaceRegexSettings = {
+  defaultSearchOptions: DEFAULT_SEARCH_OPTIONS,
+  searchHistory: [],
+  maxHistoryItems: 20,
+};
 
-	constructor(app: App, plugin: MyPlugin) {
-		super(app, plugin);
-		this.plugin = plugin;
-	}
+export class SearchAndReplaceRegexSettingTab extends PluginSettingTab {
+  icon = "search";
+  constructor(
+    app: App,
+    private plugin: SearchAndReplaceRegex,
+  ) {
+    super(app, plugin);
+    this.plugin = plugin;
+  }
 
-	display(): void {
-		const {containerEl} = this;
+  display(): void {
+    const { containerEl } = this;
+    containerEl.empty();
 
-		containerEl.empty();
+    const group = new SettingGroup(containerEl);
 
-		new Setting(containerEl)
-			.setName('Settings #1')
-			.setDesc('It\'s a secret')
-			.addText(text => text
-				.setPlaceholder('Enter your secret')
-				.setValue(this.plugin.settings.mySetting)
-				.onChange(async (value) => {
-					this.plugin.settings.mySetting = value;
-					await this.plugin.saveSettings();
-				}));
-	}
+    const addToggle = (
+      name: string,
+      desc: string,
+      key: keyof SearchOptions,
+    ) => {
+      group.addSetting(
+        (setting) =>
+          void setting
+            .setName(name)
+            .setDesc(desc)
+            .addToggle((t) =>
+              t
+                .setValue(this.plugin.settings.defaultSearchOptions[key])
+                .onChange(async (v) => {
+                  this.plugin.settings.defaultSearchOptions[key] = v;
+                  await this.plugin.saveSettings();
+                }),
+            ),
+      );
+    };
+
+    addToggle(
+      "Case sensitive by default",
+      "Make search case sensitive by default",
+      "caseSensitive",
+    );
+    addToggle(
+      "Whole word by default",
+      "Match whole words by default",
+      "wholeWord",
+    );
+    addToggle(
+      "Use regex by default",
+      "Enable regex mode by default",
+      "useRegex",
+    );
+    group.setHeading("History and confirmations").addSetting(
+      (setting) =>
+        void setting
+          .setName("Maximum history items")
+          .setDesc("Maximum number of search history items to keep")
+          .addSlider((s) =>
+            s
+              .setLimits(5, 50, 5)
+              .setValue(this.plugin.settings.maxHistoryItems)
+              .setDynamicTooltip()
+              .onChange(async (v) => {
+                this.plugin.settings.maxHistoryItems = v;
+                await this.plugin.saveSettings();
+              }),
+          ),
+    );
+  }
 }

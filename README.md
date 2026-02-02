@@ -1,90 +1,129 @@
-# Obsidian Sample Plugin
+# Search and Replace with Regex
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+A powerful search and replace plugin for Obsidian with full regular expression support.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open modal (simple)" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- **Search**: Search your notes with regular expressions, plain text, or whole word matching
+- **Replace**: Replace single or all occurrences with support for regex capture groups
+- **Search Options**:
+  - Case sensitive matching
+  - Whole word matching
+  - Regular expression mode (or plain text mode)
+- **Navigation**: Jump between matches with keyboard shortcuts or buttons
+- **Search History**: Access your recent searches and replacements
+- **Match Counter**: See which match you're on (e.g., "3 / 12")
+- **Persistent Settings**: Your default search preferences are saved
 
-## First time developing plugins?
+## Installation
 
-Quick starting guide for new plugin devs:
+1. Download the plugin files (`main.js`, `manifest.json`, `styles.css`)
+2. Place them in your vault: `.obsidian/plugins/obsidian-search-replace-regex/`
+3. Reload Obsidian
+4. Enable the plugin in **Settings → Community plugins**
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+## Usage
 
-## Releasing new releases
+### Quick Start
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+Press <kbd>Ctrl/Cmd</kbd> + <kbd>F</kbd> (or use the command palette) to open the Search panel:
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+- Type your search query (regex or plain text)
+- Use the toggle buttons to customize your search:
+  - **Case sensitive**: Match letter casing
+  - **Whole word**: Match only complete words
+  - **Use regex**: Enable regular expression mode
+- Navigate matches with **↑** and **↓** buttons or press <kbd>F3</kbd> for next
 
-## Adding your plugin to the community plugin list
+### Replace
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+Press <kbd>Ctrl/Cmd</kbd> + <kbd>H</kbd> to open Search & Replace:
 
-## How to use
+- Enter your search query and replacement text
+- Click **Replace & Search** to replace one occurrence and move to the next
+- Click **Replace All** to replace all matches at once
+- Regex capture groups (like `$1`, `$2`) work in replacements
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+### Keyboard Shortcuts
 
-## Manually installing the plugin
+| Action         | Shortcut                                              |
+| -------------- | ----------------------------------------------------- |
+| Search         | <kbd>Ctrl/Cmd</kbd> + <kbd>F</kbd>                    |
+| Replace        | <kbd>Ctrl/Cmd</kbd> + <kbd>H</kbd>                    |
+| Next match     | <kbd>F3</kbd> or <kbd>Enter</kbd>                     |
+| Previous match | <kbd>Shift</kbd> + <kbd>F3</kbd>                      |
+| Replace single | <kbd>Ctrl/Cmd</kbd> + <kbd>Enter</kbd>                |
+| Replace all    | <kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd> |
+| History        | <kbd>Ctrl/Cmd</kbd> + <kbd>↓</kbd>                    |
+| Exit search    | <kbd>Esc</kbd>                                        |
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+### Search History
 
-## Improve code quality with eslint
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- This project already has eslint preconfigured, you can invoke a check by running`npm run lint`
-- Together with a custom eslint [plugin](https://github.com/obsidianmd/eslint-plugin) for Obsidan specific code guidelines.
-- A GitHub action is preconfigured to automatically lint every commit on all branches.
+Access previous searches with:
 
-## Funding URL
+- **Arrow keys** in the search field to cycle through history
+- **History button** or <kbd>Ctrl/Cmd</kbd> + <kbd>↓</kbd> to browse all past searches
+- Click the trash icon to delete individual history entries
 
-You can include funding URLs where people who use your plugin can financially support it.
+### Settings
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+Configure default search options in **Settings → Search and Replace with Regex**:
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+- Set default case sensitivity
+- Enable whole word matching by default
+- Enable regex mode by default
+- Adjust maximum history items (5-50)
+
+## Examples
+
+### Search email addresses
+
+```
+\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b
 ```
 
-If you have multiple URLs, you can also do:
+### Search and replace dates
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
+Search: `(\d{4})-(\d{2})-(\d{2})`  
+Replace: `$3/$2/$1`
+
+### Remove duplicate words
+
+Search: `\b(\w+)\s+\1\b`  
+Replace: `$1`
+
+## Development
+
+### Setup
+
+```bash
+npm i
 ```
 
-## API Documentation
+### Build
 
-See https://docs.obsidian.md
+```bash
+npm run build
+```
+
+### Watch mode
+
+```bash
+npm run dev
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+### Format
+
+```bash
+npm format
+```
+
+## License
+
+[0-BSD License](LICENSE)

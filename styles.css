@@ -1,8 +1,13 @@
-/*
+/* Search and Replace Regex Plugin Styles */
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+/**
+ * Most of the styling is done by native Obsidian styles
+ * This file contains only custom styles for specific elements
+ */
 
-If your plugin does not need CSS, delete this file.
-
-*/
+.cm-panels.cm-panels-top {
+  border: none;
+}
+.clickable-icon.extra-setting-button.active {
+  color: var(--text-accent);
+}

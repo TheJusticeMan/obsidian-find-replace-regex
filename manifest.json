@@ -1,11 +1,10 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
+	"id": "search-and-replace-regex",
+	"name": "Search and Replace Regex",
+	"version": "0.0.0",
+	"minAppVersion": "1.11.4",
+	"description": "A powerful regex-based search and replace tool for Obsidian with search highlighting and navigation.",
+	"author": "Community Plugin",
 	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
 	"isDesktopOnly": false
 }
