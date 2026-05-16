@@ -1,7 +1,7 @@
 {
 	"id": "search-and-replace-regex",
 	"name": "Search and Replace Regex",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"minAppVersion": "1.11.4",
 	"description": "A powerful regex-based search and replace tool for the app with search highlighting and navigation.",
 	"author": "Justice Vellacott",
