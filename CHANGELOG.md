@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.4] - 2026-05-16
+
+- Fix the release
+
 ## [0.0.3] - 2026-05-16
 
 ### Updates

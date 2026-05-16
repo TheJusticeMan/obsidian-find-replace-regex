@@ -1,6 +1,6 @@
 {
   "name": "search-and-replace-regex",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A powerful regex-based search and replace tool for the app with search highlighting and navigation.",
   "main": "main.js",
   "type": "module",
