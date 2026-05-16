@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.1] - 2026-05-16
+
+### Security and Release Improvements
+
+- Added build artifact attestations to the GitHub release workflow for `main.js`, `manifest.json`, and `styles.css`.
+- Updated workflow permissions to support provenance attestations (`id-token: write` and `attestations: write`).
+- Release pipeline now emits verifiable provenance metadata for published plugin artifacts.
+
 ## [0.0.0] - 2026-02-02
 
 ### Initial Release 🎉

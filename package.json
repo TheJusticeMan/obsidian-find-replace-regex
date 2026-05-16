@@ -1,7 +1,7 @@
 {
   "name": "search-and-replace-regex",
-  "version": "0.0.0",
-  "description": "A powerful regex-based search and replace tool for Obsidian with search highlighting and navigation.",
+  "version": "0.0.1",
+  "description": "A powerful regex-based search and replace tool for the app with search highlighting and navigation.",
   "main": "main.js",
   "type": "module",
   "scripts": {
@@ -18,16 +18,16 @@
     "@codemirror/state": "^6.5.0",
     "@codemirror/view": "^6.38.0",
     "@eslint/js": "9.39.2",
-    "@types/node": "25.1.0",
-    "esbuild": "0.27.2",
-    "eslint-plugin-obsidianmd": "0.1.9",
-    "globals": "17.2.0",
-    "jiti": "2.6.1",
-    "prettier": "^3.8.1",
-    "prettier-plugin-sh": "^0.18.0",
-    "tslib": "2.8.1",
-    "typescript": "5.9.3",
-    "typescript-eslint": "8.54.0"
+    "@types/node": "^25.8.0",
+    "esbuild": "^0.28.0",
+    "eslint-plugin-obsidianmd": "^0.3.0",
+    "globals": "^17.6.0",
+    "jiti": "^2.7.0",
+    "prettier": "^3.8.3",
+    "prettier-plugin-sh": "^0.18.1",
+    "tslib": "^2.8.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.3"
   },
   "dependencies": {
     "obsidian": "latest"

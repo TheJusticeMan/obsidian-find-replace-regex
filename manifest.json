@@ -1,10 +1,10 @@
 {
 	"id": "search-and-replace-regex",
 	"name": "Search and Replace Regex",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"minAppVersion": "1.11.4",
-	"description": "A powerful regex-based search and replace tool for Obsidian with search highlighting and navigation.",
-	"author": "Community Plugin",
-	"authorUrl": "https://obsidian.md",
+	"description": "A powerful regex-based search and replace tool for the app with search highlighting and navigation.",
+	"author": "Justice Vellacott",
+	"authorUrl": "https://thejusticeman.github.io/",
 	"isDesktopOnly": false
 }
