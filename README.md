@@ -1,4 +1,4 @@
-# Search and Replace with Regex
+# Search and Replace Regex
 
 A powerful search and replace plugin for Obsidian with full regular expression support.
 

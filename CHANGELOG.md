@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.3] - 2026-05-16
+
+### Updates
+
+- Updated the readme header
+
 ## [0.0.2] - 2026-05-16
 
 ### Release Updates
