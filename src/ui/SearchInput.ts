@@ -1,7 +1,7 @@
 import { BaseSearchInput } from "./BaseSearchInput";
 
 export class SearchInput extends BaseSearchInput {
-  private searchCount: HTMLDivElement;
+  private searchCount!: HTMLDivElement;
 
   constructor(container: HTMLElement, placeholder: string) {
     super(container, placeholder, "document-search-input");

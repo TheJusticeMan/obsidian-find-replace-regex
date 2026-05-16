@@ -2,8 +2,8 @@ import { BaseComponent, ExtraButtonComponent, TextComponent } from "obsidian";
 import { ToggleButtonComponent } from "./components";
 
 export class BaseSearchInput extends BaseComponent {
-  protected input: TextComponent;
-  protected buttonsContainer: HTMLDivElement;
+  protected input!: TextComponent;
+  protected buttonsContainer!: HTMLDivElement;
 
   constructor(
     protected container: HTMLElement,

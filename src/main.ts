@@ -8,7 +8,7 @@ import {
 } from "./settings";
 
 export default class SearchAndReplaceRegex extends Plugin {
-  settings: SearchAndReplaceRegexSettings;
+  settings!: SearchAndReplaceRegexSettings;
 
   async onload() {
     await this.loadSettings();

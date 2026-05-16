@@ -110,7 +110,7 @@ export function createSearchPanel(
   const panelDom = searchPanel.dom;
 
   view.dom.parentElement?.prepend(panelDom);
-  requestAnimationFrame(() => searchPanel.focus());
+  window.requestAnimationFrame(() => searchPanel.focus());
 
   return searchPanel.createPanel();
 }

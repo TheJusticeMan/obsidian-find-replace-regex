@@ -1,7 +1,7 @@
 import { StateEffect } from "@codemirror/state";
 import { EditorView } from "@codemirror/view";
-import SearchAndReplaceRegex from "main";
 import { Editor } from "obsidian";
+import type SearchAndReplaceRegex from "./main";
 import { SearchHandler } from "./handlers/SearchHandler";
 import { SearchMatcher } from "./search/SearchMatcher";
 import {
@@ -10,9 +10,12 @@ import {
   toggleSearchPanel,
 } from "./state";
 
+type EditorWithCodeMirror = Editor & {
+  cm?: EditorView;
+};
+
 const dispatchEffects = (editor: Editor, effects: StateEffect<unknown>[]) => {
-  // @ts-ignore
-  (editor.cm as EditorView)?.dispatch({ effects });
+  (editor as EditorWithCodeMirror).cm?.dispatch({ effects });
 };
 
 const matcher = new SearchMatcher();
@@ -21,7 +24,7 @@ export function registerCommands(plugin: SearchAndReplaceRegex) {
   plugin.addCommand({
     id: "open-regex-search",
     name: "Search",
-    editorCallback: (editor) =>
+    editorCallback: (editor: Editor) =>
       dispatchEffects(editor, [
         toggleSearchPanel.of(true),
         toggleReplaceMode.of(false),
@@ -32,7 +35,7 @@ export function registerCommands(plugin: SearchAndReplaceRegex) {
   plugin.addCommand({
     id: "open-regex-replace",
     name: "Replace",
-    editorCallback: (editor) =>
+    editorCallback: (editor: Editor) =>
       dispatchEffects(editor, [
         toggleSearchPanel.of(true),
         toggleReplaceMode.of(true),
@@ -43,9 +46,8 @@ export function registerCommands(plugin: SearchAndReplaceRegex) {
   plugin.addCommand({
     id: "search-next",
     name: "Search next match",
-    editorCallback: (editor) => {
-      // @ts-ignore
-      const view = editor.cm as EditorView;
+    editorCallback: (editor: Editor) => {
+      const view = (editor as EditorWithCodeMirror).cm;
       if (view)
         new SearchHandler(view, plugin.app, plugin.settings, matcher).navigate(
           1,
@@ -56,9 +58,8 @@ export function registerCommands(plugin: SearchAndReplaceRegex) {
   plugin.addCommand({
     id: "search-previous",
     name: "Search previous match",
-    editorCallback: (editor) => {
-      // @ts-ignore
-      const view = editor.cm as EditorView;
+    editorCallback: (editor: Editor) => {
+      const view = (editor as EditorWithCodeMirror).cm;
       if (view)
         new SearchHandler(view, plugin.app, plugin.settings, matcher).navigate(
           -1,

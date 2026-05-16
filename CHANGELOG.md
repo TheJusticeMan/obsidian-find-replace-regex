@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.2] - 2026-05-16
+
+### Release Updates
+
+- Bumped the plugin release metadata to `0.0.2`.
+- Switched the repository license text to MIT.
+- Tightened the TypeScript and lint configuration used by the plugin build.
+- Cleaned up search UI and command typings to avoid internal `ts-ignore` usage.
+
 ## [0.0.1] - 2026-05-16
 
 ### Security and Release Improvements

@@ -25,15 +25,15 @@ import {
 
 export class SearchPanel {
   dom: HTMLElement;
-  searchInput: SearchInput;
-  replaceInput: BaseSearchInput;
+  searchInput!: SearchInput;
+  replaceInput!: BaseSearchInput;
   private handler: SearchHandler;
   private historyManager: SearchHistoryManager;
   private matcher: SearchMatcher;
   private historyModal?: SearchHistoryModal;
-  private caseSensitiveToggle: ToggleButtonComponent;
-  private wholeWordToggle: ToggleButtonComponent;
-  private regexToggle: ToggleButtonComponent;
+  private caseSensitiveToggle!: ToggleButtonComponent;
+  private wholeWordToggle!: ToggleButtonComponent;
+  private regexToggle!: ToggleButtonComponent;
   private currentOptions: SearchOptions;
   private historyIndex = -1;
   private draftEntry: SearchHistoryEntry | null = null;
@@ -46,7 +46,7 @@ export class SearchPanel {
     private initialOptions: SearchOptions = DEFAULT_SEARCH_OPTIONS,
   ) {
     this.currentOptions = { ...this.initialOptions };
-    this.dom = document.createElement("div");
+    this.dom = this.view.dom.ownerDocument.createElement("div");
     this.dom.classList.add("document-search-container");
     this.setupUI();
     this.updateMode();
@@ -191,7 +191,7 @@ export class SearchPanel {
 
   createPanel(): Panel {
     return {
-      dom: document.createElement("div"),
+      dom: this.view.dom.ownerDocument.createElement("div"),
       top: true,
       update: (update) => this.update(update),
       destroy: () => this.destroy(),
