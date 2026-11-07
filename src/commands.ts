@@ -6,6 +6,7 @@ import { SearchHandler } from "./handlers/SearchHandler";
 import { SearchMatcher } from "./search/SearchMatcher";
 import {
   focusSearchInput,
+  setSearchOptions,
   toggleReplaceMode,
   toggleSearchPanel,
 } from "./state";
@@ -28,6 +29,7 @@ export function registerCommands(plugin: SearchAndReplaceRegex) {
       dispatchEffects(editor, [
         toggleSearchPanel.of(true),
         toggleReplaceMode.of(false),
+        setSearchOptions.of(plugin.settings.defaultSearchOptions),
         focusSearchInput.of(),
       ]),
   });
@@ -39,6 +41,7 @@ export function registerCommands(plugin: SearchAndReplaceRegex) {
       dispatchEffects(editor, [
         toggleSearchPanel.of(true),
         toggleReplaceMode.of(true),
+        setSearchOptions.of(plugin.settings.defaultSearchOptions),
         focusSearchInput.of(),
       ]),
   });
