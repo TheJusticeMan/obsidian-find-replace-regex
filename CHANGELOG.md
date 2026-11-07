@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.5] - 2026-11-07
+
+- Apply configured default search options when opening Search or Replace.
+
 ## [0.0.4] - 2026-05-16
 
 - Fix the release
